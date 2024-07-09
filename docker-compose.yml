@@ -1,0 +1,31 @@
+version: "3"
+services:
+  springboot-app:
+    # container_name: spring-app
+    image: springboot-app
+    restart: always
+    build: ./IronByteIntern
+    ports:
+      - 8060:8080
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_PORT: 3306
+  mysqldb:
+    container_name: mysqldb
+    image: mysql
+    volumes:
+      #-  /home/user/Desktop/db:/var/lib/mysql
+      - C:/Users/TROOPY/Desktop/db:/var/lib/mysql
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_DATABASE: ironbyte
+      MYSQL_ROOT_PASSWORD: root
+ 
+
+networks:
+  networkmysql:
+volumes:
+  data:
