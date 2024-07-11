@@ -1,0 +1,95 @@
+# Configure 'Deployment' of MySQL server
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+    tier: database
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+      tier: database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+        tier: database
+    spec:
+      containers:
+        - image: mysql:latest # image from Docker Hub
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: dbName
+
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: username
+
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: password
+
+          ports:
+            - containerPort: 3306
+              name: mysql
+      # Uncomment the following lines to enable PersistentVolumeClaim
+      # volumes:
+      #   - name: mysql-persistent-storage
+      #     persistentVolumeClaim:
+      #       claimName: mysql-pv-claim
+      # volumeMounts:
+      #   - name: mysql-persistent-storage
+      #     mountPath: /var/lib/mysql
+
+---
+# Define a 'Service' to expose MySQL to other services
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql  # DNS name
+  labels:
+    app: mysql
+    tier: database
+spec:
+  ports:
+    - port: 3306
+      targetPort: 3306
+  selector:
+    app: mysql
+    tier: database
+  clusterIP: None  # Using DNS, thus ClusterIP is not relevant
+
+---
+# Define a ConfigMap to hold database configurations
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  host: mysql
+  dbName: ironbyte
+
+---
+# Define a Secret to hold database credentials
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secrets
+data:
+  username: cm9vdA==
+  password: cm9vdA==

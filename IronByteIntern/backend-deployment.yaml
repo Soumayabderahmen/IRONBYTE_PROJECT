@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-mysql
+  template:
+    metadata:
+      labels:
+        app: backend-mysql
+    spec:
+      containers:
+      - name: intern-springboot-app-1
+        image: soumayaabderahmen/springboot-app:latest
+        ports:
+        - containerPort: 8080
+        env:   
+            - name: MYSQL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: host
+
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: dbName
+
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: username
+
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: springboot-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort
