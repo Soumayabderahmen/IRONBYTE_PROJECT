@@ -5,7 +5,7 @@ pipeline {
         DOCKER_CREDENTIALS_ID = 'soumayaabderahmen'
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya'
-        SPRING_BOOT_IMAGE = "${DOCKERHUB_NAMESPACE}/springboot-app"
+        SPRING_BOOT_IMAGE = "${DOCKER_CREDENTIALS_ID}/springboot-app"
         ANGULAR_IMAGE = "${DOCKER_CREDENTIALS_ID}/angular-app-iron"
     }
 
