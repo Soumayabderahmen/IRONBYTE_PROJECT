@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    git credentialsId: "${GITHUB_CREDENTIALS_ID}", url: 'https://github.com/Soumayabderahmen/IRONBYTE_PROJECT.git'
+                    git credentialsId: "${GITHUB_CREDENTIALS_ID}", url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git'
                 }
             }
         }
