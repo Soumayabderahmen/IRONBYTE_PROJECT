@@ -6,14 +6,14 @@ pipeline {
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya'
         SPRING_BOOT_IMAGE = "${DOCKERHUB_NAMESPACE}/springboot-app"
-        ANGULAR_IMAGE = "${DOCKER_CREDENTIALS_ID}/angular-app-iron"
+        ANGULAR_IMAGE = "${DOCKERHUB_NAMESPACE}/angular-app-iron"
     }
 
     stages {
         stage('Checkout') {
             steps {
                 script {
-                    git branch: 'main', credentialsId: "${GITHUB_CREDENTIALS_ID}", url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git'
+                    git credentialsId: "${GITHUB_CREDENTIALS_ID}", url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git'
                 }
             }
         }
