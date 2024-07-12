@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_CREDENTIALS_ID = 'soumaya_Docker'
+        DOCKER_CREDENTIALS_ID = 'soumayaabderahmen'
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya'
         SPRING_BOOT_IMAGE = "${DOCKERHUB_NAMESPACE}/springboot-app"
