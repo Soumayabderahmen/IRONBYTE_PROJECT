@@ -1,14 +1,23 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_CREDENTIALS_ID = 'soumaya_Docker'
+        DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
+        GITHUB_CREDENTIALS_ID = 'Soumaya'
+        SPRING_BOOT_IMAGE = "${DOCKERHUB_NAMESPACE}/springboot-app"
+        ANGULAR_IMAGE = "${DOCKER_CREDENTIALS_ID}/angular-app-iron"
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'main']],
-                          doGenerateSubmoduleConfigurations: false, extensions: [], 
-                          submoduleCfg: [], userRemoteConfigs: [[url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', credentialsId: 'Soumaya']]])
+                script {
+                    git branch: 'main', credentialsId: "${GITHUB_CREDENTIALS_ID}", url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git'
+                }
             }
         }
+
         stage('Build Angular') {
             steps {
                 dir('ironbyte') {
@@ -17,31 +26,43 @@ pipeline {
                 }
             }
         }
+
         stage('Docker Build and Push Angular') {
             steps {
                 dir('ironbyte') {
                     script {
-                        docker.build('soumayaabderahmen/ironbyte-angular').push('latest')
+                        def angularImage = docker.build("${ANGULAR_IMAGE}:${env.BUILD_NUMBER}")
+                        docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
+                            angularImage.push()
+                            angularImage.push("latest")
+                        }
                     }
                 }
             }
         }
+
         stage('Build Spring Boot') {
             steps {
                 dir('ironbyteintern') {
-                    bat './mvnw clean install'
+                    bat './mvnw clean package'
                 }
             }
         }
+
         stage('Docker Build and Push Spring Boot') {
             steps {
                 dir('ironbyteintern') {
                     script {
-                        docker.build('soumayaabderahmen/ironbyte-springboot').push('latest')
+                        def springBootImage = docker.build("${SPRING_BOOT_IMAGE}:${env.BUILD_NUMBER}")
+                        docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
+                            springBootImage.push()
+                            springBootImage.push("latest")
+                        }
                     }
                 }
             }
         }
+
         stage('Deploy to Kubernetes') {
             steps {
                 script {
