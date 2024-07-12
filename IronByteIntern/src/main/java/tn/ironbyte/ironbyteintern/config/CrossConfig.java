@@ -16,6 +16,7 @@ public class CrossConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true)
                 .maxAge(3600);
+               
     }
 
 

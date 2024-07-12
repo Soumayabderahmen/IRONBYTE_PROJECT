@@ -7,7 +7,7 @@ metadata:
     app: mysql
     tier: database
 spec:
-  selector:
+  selector: # MySQL Pod should contain same labels
     matchLabels:
       app: mysql
       tier: database
@@ -15,7 +15,7 @@ spec:
     type: Recreate
   template:
     metadata:
-      labels:
+      labels: # Must match 'Service' and 'Deployment' selectors
         app: mysql
         tier: database
     spec:
@@ -24,44 +24,26 @@ spec:
           name: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: root
-
-            - name: MYSQL_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: db-config
-                  key: dbName
-
-            - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secrets
-                  key: username
-
-            - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mysql-secrets
                   key: password
 
+            - name: MYSQL_DATABASE # Setting database name from a 'ConfigMap'
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: dbName
+
           ports:
             - containerPort: 3306
               name: mysql
-      # Uncomment the following lines to enable PersistentVolumeClaim
-      # volumes:
-      #   - name: mysql-persistent-storage
-      #     persistentVolumeClaim:
-      #       claimName: mysql-pv-claim
-      # volumeMounts:
-      #   - name: mysql-persistent-storage
-      #     mountPath: /var/lib/mysql
-
 ---
 # Define a 'Service' to expose MySQL to other services
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql  # DNS name
+  name: mysql # DNS name
   labels:
     app: mysql
     tier: database
@@ -69,27 +51,7 @@ spec:
   ports:
     - port: 3306
       targetPort: 3306
-  selector:
+  selector: # MySQL Pod should contain same labels
     app: mysql
     tier: database
-  clusterIP: None  # Using DNS, thus ClusterIP is not relevant
-
----
-# Define a ConfigMap to hold database configurations
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: db-config
-data:
-  host: mysql
-  dbName: ironbyte
-
----
-# Define a Secret to hold database credentials
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mysql-secrets
-data:
-  username: cm9vdA==
-  password: cm9vdA==
+  clusterIP: None # We use DNS, thus ClusterIP is not relevant

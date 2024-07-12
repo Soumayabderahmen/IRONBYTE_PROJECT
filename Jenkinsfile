@@ -5,6 +5,8 @@ pipeline {
         DOCKER_CREDENTIALS_ID = 'soumaya_Docker'
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya'
+        SPRING_BOOT_IMAGE = "${DOCKERHUB_NAMESPACE}/springboot-app"
+        ANGULAR_IMAGE = "${DOCKERHUB_NAMESPACE}/angular-app-iron"
     }
 
     stages {
@@ -29,7 +31,11 @@ pipeline {
             steps {
                 dir('ironbyte') {
                     script {
-                        docker.build("${DOCKERHUB_NAMESPACE}/angular-app-iron").push()
+                        def angularImage = docker.build("${ANGULAR_IMAGE}:${env.BUILD_NUMBER}")
+                        docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
+                            angularImage.push()
+                            angularImage.push("latest")
+                        }
                     }
                 }
             }
@@ -47,7 +53,11 @@ pipeline {
             steps {
                 dir('ironbyteintern') {
                     script {
-                        docker.build("${DOCKERHUB_NAMESPACE}/springboot-app").push()
+                        def springBootImage = docker.build("${SPRING_BOOT_IMAGE}:${env.BUILD_NUMBER}")
+                        docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
+                            springBootImage.push()
+                            springBootImage.push("latest")
+                        }
                     }
                 }
             }
