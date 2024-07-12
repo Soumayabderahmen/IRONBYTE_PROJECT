@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git'
+                checkout([$class: 'GitSCM', branches: [[name: 'main']],
+                          doGenerateSubmoduleConfigurations: false, extensions: [], 
+                          submoduleCfg: [], userRemoteConfigs: [[url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', credentialsId: 'Soumaya']]])
             }
         }
         stage('Build Angular') {
