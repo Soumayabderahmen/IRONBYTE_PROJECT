@@ -33,7 +33,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
                         docker.image('soumayaabderahmen/springboot-app').push()
-                        docker.image('soumayaabderahmen/angular-app-iron:latest').push()
+                        docker.image('soumayaabderahmen/angular-app-iron:5').push()
                     }
                 }
             }
