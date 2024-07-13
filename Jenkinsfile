@@ -22,9 +22,7 @@ pipeline {
                 script {
                     def dockerImage = docker.build('soumayaabderahmen/springboot-app', './IronByteIntern')
                     dockerImage.inside("--network networkmysql -e MYSQL_HOST=mysqldb -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_PORT=3306") {
-                        dir('./IronByteIntern') {
-                            bat 'mvn clean package -DskipTests'
-                        }
+                        bat 'mvn clean package -DskipTests'
                     }
                 }
             }
@@ -35,7 +33,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
                         docker.image('soumayaabderahmen/springboot-app').push()
-                        docker.image('soumayaabderahmen/angular-app-iron:5').push()
+                        docker.image('soumayaabderahmen/angular-app-iron:latest').push()
                     }
                 }
             }
