@@ -21,9 +21,9 @@ pipeline {
             steps {
                 script {
                     def dockerImage = docker.build('soumayaabderahmen/springboot-app', './IronByteIntern')
-                    dockerImage.inside('--network networkmysql -e MYSQL_HOST=mysqldb -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_PORT=3306') {
-                        sh 'mvn clean package -DskipTests'
-                    }
+                  dockerImage.inside("--network networkmysql -e MYSQL_HOST=mysqldb -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_PORT=3306 -w ${PWD}") {
+    sh 'mvn clean package -DskipTests'
+}
                 }
             }
         }
