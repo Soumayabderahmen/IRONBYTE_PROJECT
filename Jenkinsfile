@@ -1,24 +1,23 @@
 pipeline {
     agent any
+
     environment {
-        DOCKER_CREDENTIALS_ID = 'soumayaabderahmen' // Remplacez par l'ID de vos credentials Docker
-        DOCKER_CONTEXT = 'desktop-linux'
+        DOCKER_CREDENTIALS_ID = 'soumayaabderahmen'
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya'
+        SPRING_BOOT_IMAGE = "${DOCKER_CREDENTIALS_ID}/springboot-app"
+        ANGULAR_IMAGE = "${DOCKER_CREDENTIALS_ID}/angular-app-iron"
     }
+
     stages {
         stage('Checkout') {
             steps {
-                git url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', branch: 'main'
-            }
-        }
-        stage('Set Docker Context') {
-            steps {
                 script {
-                    sh 'docker context use ${DOCKER_CONTEXT}'
+                    git branch: 'main', credentialsId: "${GITHUB_CREDENTIALS_ID}", url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git'
                 }
             }
         }
+
         stage('Build Angular') {
             steps {
                 dir('ironbyte') {
@@ -27,32 +26,45 @@ pipeline {
                 }
             }
         }
+
         stage('Docker Build and Push Angular') {
             steps {
                 dir('ironbyte') {
                     script {
-                        docker.build("soumayaabderahmen/angular-app-iron:latest")
-                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
-                            docker.image("soumayaabderahmen/angular-app-iron:latest").push()
+                        def angularImage = docker.build("${ANGULAR_IMAGE}:${env.BUILD_NUMBER}")
+                        docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
+                            angularImage.push()
+                            angularImage.push("latest")
                         }
                     }
                 }
             }
         }
+stage('Verify Docker Login') {
+    steps {
+        script {
+            docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
+                sh 'docker info'
+            }
+        }
+    }
+}
         stage('Build Spring Boot') {
             steps {
                 dir('ironbyteintern') {
-                    bat 'mvn clean package'
+                    bat './mvnw clean package'
                 }
             }
         }
+
         stage('Docker Build and Push Spring Boot') {
             steps {
                 dir('ironbyteintern') {
                     script {
-                        docker.build("soumayaabderahmen/spring-boot-app-iron:latest")
-                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
-                            docker.image("soumayaabderahmen/spring-boot-app-iron:latest").push()
+                        def springBootImage = docker.build("${SPRING_BOOT_IMAGE}:${env.BUILD_NUMBER}")
+                        docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
+                            springBootImage.push()
+                            springBootImage.push("latest")
                         }
                     }
                 }
