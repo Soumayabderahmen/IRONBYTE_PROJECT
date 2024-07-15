@@ -17,16 +17,17 @@ pipeline {
             }
         }
 
-        stage('Build Spring Boot and MySQL Docker Images') {
-            steps {
-                script {
-                    def dockerImage = docker.build('soumayaabderahmen/springboot-app', 'C:/Esprit/SpringProject/intern/IronByteIntern')
-                    dockerImage.inside("--network networkmysql -e MYSQL_HOST=mysqldb -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_PORT=3306") {
-                        bat 'mvn clean package -DskipTests'
-                    }
-                }
+       stage('Build Spring Boot and MySQL Docker Images') {
+    steps {
+        script {
+            def dockerImage = docker.build('soumayaabderahmen/springboot-app', 'C:/Esprit/SpringProject/intern/IronByteIntern')
+            dockerImage.inside("--network networkmysql -e MYSQL_HOST=mysqldb -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_PORT=3306") {
+                bat 'mvn clean package -DskipTests'
             }
         }
+    }
+}
+
 
         stage('Push Docker Images') {
             steps {
