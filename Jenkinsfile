@@ -15,7 +15,7 @@ pipeline {
         stage('Set Docker Context') {
             steps {
                 script {
-                    sh 'docker context use ${DOCKER_CONTEXT}'
+                    bat 'docker context use ${DOCKER_CONTEXT}'
                 }
             }
         }
