@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     echo "Setting Docker context to ${env.DOCKER_CONTEXT}"
-                    sh "docker context use ${env.DOCKER_CONTEXT}"
+                    bat "docker context use ${env.DOCKER_CONTEXT}"
                 }
             }
         }
