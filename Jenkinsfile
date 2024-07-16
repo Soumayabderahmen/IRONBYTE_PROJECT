@@ -1,58 +1,62 @@
 pipeline {
     agent any
-
     environment {
         DOCKER_CREDENTIALS_ID = 'soumayaabderahmen' // Replace with your Docker credentials ID
+        DOCKER_CONTEXT = 'desktop-linux' // Set your Docker context
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
-        GITHUB_CREDENTIALS_ID = 'Soumaya'
-        SPRING_BOOT_IMAGE = 'soumayaabderahmen/springboot-app'
-        ANGULAR_IMAGE = 'soumayaabderahmen/iron-byte'
+        GITHUB_CREDENTIALS_ID = 'Soumaya' // Replace with your GitHub credentials ID
     }
-
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: "${GITHUB_CREDENTIALS_ID}", url: 'git@github.com:Soumayabderahmen/IRONBYTE.git'
+                git url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', branch: 'main'
             }
         }
-
-        stage('Build Spring Boot') {
+        stage('Set Docker Context') {
             steps {
-                dir('IronByteIntern') {
-                    sh 'mvn clean package'
+                script {
+                    bat 'docker context use ${DOCKER_CONTEXT}'
                 }
             }
         }
-
         stage('Build Angular') {
             steps {
-                dir('IronByte') {
-                    sh 'npm install'
-                    sh 'npm run build --prod'
+                dir('ironbyte') {
+                    bat 'npm install'
+                    bat 'npm run build --prod'
                 }
             }
         }
-
-        stage('Docker Compose Up') {
+        stage('Docker Build and Push Angular') {
             steps {
-                sh 'docker-compose up -d'
+                dir('ironbyte') {
+                    script {
+                        docker.build("${DOCKERHUB_NAMESPACE}/angular-app-iron:5")
+                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
+                            docker.image("${DOCKERHUB_NAMESPACE}/angular-app-iron:5").push()
+                        }
+                    }
+                }
             }
         }
-
-        stage('Deploy to Kubernetes') {
+        stage('Build Spring Boot') {
             steps {
-                sh 'kubectl apply -f ironbyteintern/backend-deployment.yaml'
-                sh 'kubectl apply -f ironbyteintern/mysql-configMap.yaml'
-                sh 'kubectl apply -f ironbyteintern/mysql-secrets.yaml'
-                sh 'kubectl apply -f ironbyteintern/db-deployment.yaml'
-                sh 'kubectl apply -f ironbytefrontend-deployment.yaml'
+                dir('ironbyteintern') {
+                    bat 'mvn clean package'
+                }
             }
         }
-    }
-
-    post {
-        always {
-            cleanWs()
+        stage('Docker Build and Push Spring Boot') {
+            steps {
+                dir('ironbyteintern') {
+                    script {
+                        docker.build("${DOCKERHUB_NAMESPACE}/spring-boot-app-iron:5")
+                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
+                            docker.image("${DOCKERHUB_NAMESPACE}/spring-boot-app-iron:5").push()
+                        }
+                    }
+                }
+            }
         }
-    }
-}
+        }}
+    
