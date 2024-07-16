@@ -33,24 +33,20 @@ pipeline {
                 }
             }
         }
-        stage('Build Spring Boot') {
-            steps {
-                dir('ironbyteintern') {
-                    bat 'mvn clean package'
-                }
-            }
-        }
-        stage('Docker Build and Push Spring Boot') {
+       stage('Build Spring Boot') {
             steps {
                 dir('ironbyteintern') {
                     script {
-                        docker.build("${DOCKERHUB_NAMESPACE}/spring-boot-app-iron:5")
-                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
-                            docker.image("${DOCKERHUB_NAMESPACE}/spring-boot-app-iron:5").push()
+                        def springDockerImage = "${DOCKER_IMAGE_SPRING}:5"
+                        bat './mvnw clean package -DskipTests'
+                        bat "docker build -t ${springDockerImage} ."
+                        docker.withRegistry('https://registry.hub.docker.com', env.DOCKER_CREDENTIALS_ID) {
+                            bat "docker push ${springDockerImage}"
                         }
                     }
                 }
             }
         }
-        }}
+    }
+        }
     
