@@ -12,13 +12,7 @@ pipeline {
                 git url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', branch: 'main'
             }
         }
-        stage('Set Docker Context') {
-            steps {
-                script {
-                    bat 'docker context use ${DOCKER_CONTEXT}'
-                }
-            }
-        }
+        
         stage('Build Angular') {
             steps {
                 dir('ironbyte') {
