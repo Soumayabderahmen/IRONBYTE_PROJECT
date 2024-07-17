@@ -21,6 +21,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
+                    echo "Checking out the repository..."
                     git branch: 'main', url: 'https://github.com/Soumayabderahmen/IRONBYTE_PROJECT.git', credentialsId: "${GITHUB_CREDENTIALS_ID}"
                 }
             }
@@ -29,6 +30,7 @@ pipeline {
         stage('Build Angular') {
             steps {
                 script {
+                    echo "Building Angular project..."
                     dir('IronByte') {
                         bat 'npm install'
                         bat 'npm run build --prod'
@@ -40,6 +42,7 @@ pipeline {
         stage('Build Spring Boot') {
             steps {
                 script {
+                    echo "Building Spring Boot project..."
                     dir('IronByteIntern') {
                         bat 'mvn clean package'
                     }
@@ -50,6 +53,7 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 script {
+                    echo "Building Docker images..."
                     docker.build("${DOCKERHUB_NAMESPACE}/intern-angular", "IronByte/.")
                     docker.build("${DOCKERHUB_NAMESPACE}/springboot-app", "IronByteIntern/.")
                 }
@@ -59,6 +63,7 @@ pipeline {
         stage('Push Docker Images') {
             steps {
                 script {
+                    echo "Pushing Docker images..."
                     docker.withRegistry('', "${DOCKER_CREDENTIALS_ID}") {
                         docker.image("${DOCKERHUB_NAMESPACE}/intern-angular").push()
                         docker.image("${DOCKERHUB_NAMESPACE}/springboot-app").push()
@@ -69,8 +74,21 @@ pipeline {
         
         stage('Deploy') {
             steps {
+                echo "Deploying application using Docker Compose..."
                 bat 'docker-compose -f docker-compose.yml up -d'
             }
+        }
+    }
+    
+    post {
+        always {
+            echo "Pipeline completed."
+        }
+        success {
+            echo "Pipeline succeeded."
+        }
+        failure {
+            echo "Pipeline failed."
         }
     }
 }
