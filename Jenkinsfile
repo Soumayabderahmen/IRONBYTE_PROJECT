@@ -12,10 +12,10 @@ pipeline {
         GITHUB_CREDENTIALS_ID = 'Soumaya' // Replace with your GitHub credentials ID
     }
     
-    tools {
-        maven 'Maven 3.9.8' // Ensure Maven is configured in Jenkins global tool configuration
-        nodejs 'NodeJS 20'  // Ensure NodeJS is configured in Jenkins global tool configuration
-    }
+    // tools {
+    //     maven 'Maven 3.9.8' // Ensure Maven is configured in Jenkins global tool configuration
+    //     nodejs 'NodeJS 20'  // Ensure NodeJS is configured in Jenkins global tool configuration
+    // }
     
     stages {
         stage('Checkout') {
