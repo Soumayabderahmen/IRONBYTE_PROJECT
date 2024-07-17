@@ -1,8 +1,9 @@
 pipeline {
     agent any
+    
     environment {
         DOCKER_CREDENTIALS_ID = 'soumayaabderahmen' // Replace with your Docker credentials ID
-         MYSQL_DATABASE = 'ironbyte'
+        MYSQL_DATABASE = 'ironbyte'
         MYSQL_ROOT_PASSWORD = 'root'
         MYSQL_HOST = 'mysqldb'
         MYSQL_USER = 'root'
@@ -10,17 +11,21 @@ pipeline {
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya' // Replace with your GitHub credentials ID
     }
-      tools {
+    
+    tools {
         maven 'Maven 3.9.8' // Ensure Maven is configured in Jenkins global tool configuration
-        nodejs 'NodeJS 20.11.1' // Ensure NodeJS is configured in Jenkins global tool configuration
+        nodejs 'NodeJS 20'  // Ensure NodeJS is configured in Jenkins global tool configuration
     }
+    
     stages {
         stage('Checkout') {
             steps {
-                git url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', branch: 'main'
+                script {
+                    git branch: 'main', url: 'https://github.com/Soumayabderahmen/IRONBYTE_PROJECT.git', credentialsId: "${GITHUB_CREDENTIALS_ID}"
+                }
             }
         }
-
+        
         stage('Build Angular') {
             steps {
                 script {
@@ -31,7 +36,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Build Spring Boot') {
             steps {
                 script {
@@ -41,27 +46,27 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Build Docker Images') {
             steps {
                 script {
-                    docker.build("intern-angular", "IronByte/.")
-                    docker.build("soumayaabderahmen/springboot-app", "IronByteIntern/.")
+                    docker.build("${DOCKERHUB_NAMESPACE}/intern-angular", "IronByte/.")
+                    docker.build("${DOCKERHUB_NAMESPACE}/springboot-app", "IronByteIntern/.")
                 }
             }
         }
-
+        
         stage('Push Docker Images') {
             steps {
                 script {
                     docker.withRegistry('', "${DOCKER_CREDENTIALS_ID}") {
-                        docker.image('intern-angular').push()
-                        docker.image('soumayaabderahmen/springboot-app').push()
+                        docker.image("${DOCKERHUB_NAMESPACE}/intern-angular").push()
+                        docker.image("${DOCKERHUB_NAMESPACE}/springboot-app").push()
                     }
                 }
             }
         }
-
+        
         stage('Deploy') {
             steps {
                 bat 'docker-compose -f docker-compose.yml up -d'
