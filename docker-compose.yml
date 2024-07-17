@@ -23,7 +23,11 @@ services:
     environment:
       MYSQL_DATABASE: ironbyte
       MYSQL_ROOT_PASSWORD: root
- 
+  angular:
+      build: ./IronByte
+      ports:
+      - "4200:80"
+     
 
 networks:
   networkmysql:

@@ -2,9 +2,17 @@ pipeline {
     agent any
     environment {
         DOCKER_CREDENTIALS_ID = 'soumayaabderahmen' // Replace with your Docker credentials ID
-        DOCKER_CONTEXT = 'desktop-linux' // Set your Docker context
+         MYSQL_DATABASE = 'ironbyte'
+        MYSQL_ROOT_PASSWORD = 'root'
+        MYSQL_HOST = 'mysqldb'
+        MYSQL_USER = 'root'
+        MYSQL_PASSWORD = 'root'
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya' // Replace with your GitHub credentials ID
+    }
+      tools {
+        maven 'Maven 3.9.8' // Ensure Maven is configured in Jenkins global tool configuration
+        nodejs 'NodeJS 20.11.1' // Ensure NodeJS is configured in Jenkins global tool configuration
     }
     stages {
         stage('Checkout') {
@@ -15,46 +23,48 @@ pipeline {
 
         stage('Build Angular') {
             steps {
-                dir('ironbyte') {
-                    bat 'npm install'
-                    bat 'npm run build --prod'
-                }
-            }
-        }
-        
-        stage('Docker Build and Push Angular') {
-            steps {
-                dir('ironbyte') {
-                    script {
-                        def dockerImage = "${DOCKERHUB_NAMESPACE}/angular-app-iron:5"
-                        bat "docker --context ${DOCKER_CONTEXT} build -t ${dockerImage} ."
-                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
-                            bat "docker --context ${DOCKER_CONTEXT} push ${dockerImage}"
-                        }
+                script {
+                    dir('IronByte') {
+                        bat 'npm install'
+                        bat 'npm run build --prod'
                     }
                 }
             }
         }
-        
+
         stage('Build Spring Boot') {
             steps {
-                dir('ironbyteintern') {
-                    bat './mvnw clean package -DskipTests'
+                script {
+                    dir('IronByteIntern') {
+                        bat 'mvn clean package'
+                    }
                 }
             }
         }
-        
-        stage('Docker Build and Push Spring Boot') {
+
+        stage('Build Docker Images') {
             steps {
-                dir('ironbyteintern') {
-                    script {
-                        def springDockerImage = "${DOCKERHUB_NAMESPACE}/spring-app-iron:5"
-                        bat "docker --context ${DOCKER_CONTEXT} build -t ${springDockerImage} ."
-                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
-                            bat "docker --context ${DOCKER_CONTEXT} push ${springDockerImage}"
-                        }
+                script {
+                    docker.build("intern-angular", "IronByte/.")
+                    docker.build("soumayaabderahmen/springboot-app", "IronByteIntern/.")
+                }
+            }
+        }
+
+        stage('Push Docker Images') {
+            steps {
+                script {
+                    docker.withRegistry('', "${DOCKER_CREDENTIALS_ID}") {
+                        docker.image('intern-angular').push()
+                        docker.image('soumayaabderahmen/springboot-app').push()
                     }
                 }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                bat 'docker-compose -f docker-compose.yml up -d'
             }
         }
     }
