@@ -17,15 +17,15 @@ pipeline {
     //     nodejs 'NodeJS 20'  // Ensure NodeJS is configured in Jenkins global tool configuration
     // }
     
-    // stages {
-    //     stage('Checkout') {
-    //         steps {
-    //             script {
-    //                 echo "Checking out the repository..."
-    //             git url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', branch: 'main'
-    //             }
-    //         }
-    //     }
+stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    echo "Checking out the repository..."
+                git url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', branch: 'main'
+                }
+            }
+        }
         
     //     stage('Build Angular') {
     //         steps {
@@ -91,4 +91,4 @@ pipeline {
             echo "Pipeline failed."
         }
     }
-//}
+}
