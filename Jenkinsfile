@@ -12,7 +12,7 @@ pipeline {
         GITHUB_CREDENTIALS_ID = 'Soumaya' // Replace with your GitHub credentials ID
     }
     
-
+   
     
     stages {
         stage('Checkout') {
@@ -41,8 +41,8 @@ pipeline {
             steps {
                 script {
                     echo "Building Docker images..."
-                    bat 'docker build -t ${DOCKERHUB_NAMESPACE}/ironbyteintern:latest IronByteIntern'
-                    bat 'docker build -t ${DOCKERHUB_NAMESPACE}/ironbyte:latest IronByte'
+                    bat "docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyteintern:latest IronByteIntern"
+                    bat "docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyte:latest IronByte"
                 }
             }
         }
@@ -51,10 +51,10 @@ pipeline {
             steps {
                 script {
                     echo "Pushing Docker images to Docker Hub..."
-                    withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: "${env.DOCKER_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         bat 'docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%'
-                        bat 'docker push ${DOCKERHUB_NAMESPACE}/ironbyteintern:latest'
-                        bat 'docker push ${DOCKERHUB_NAMESPACE}/ironbyte:latest'
+                        bat "docker push ${env.DOCKERHUB_NAMESPACE}/ironbyteintern:latest"
+                        bat "docker push ${env.DOCKERHUB_NAMESPACE}/ironbyte:latest"
                     }
                 }
             }
