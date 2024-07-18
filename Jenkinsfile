@@ -17,65 +17,54 @@ pipeline {
     //     nodejs 'NodeJS 20'  // Ensure NodeJS is configured in Jenkins global tool configuration
     // }
     
-stages {
+    stages {
         stage('Checkout') {
             steps {
                 script {
                     echo "Checking out the repository..."
-                git url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', branch: 'main'
+                    git url: 'git@github.com:Soumayabderahmen/IRONBYTE_PROJECT.git', branch: 'main', credentialsId: "${env.GITHUB_CREDENTIALS_ID}"
                 }
             }
         }
         
-    //     stage('Build Angular') {
-    //         steps {
-    //             script {
-    //                 echo "Building Angular project..."
-    //                 dir('IronByte') {
-    //                     bat 'npm install'
-    //                     bat 'npm run build --prod'
-    //                 }
-    //             }
-    //         }
-    //     }
+        stage('Build') {
+            steps {
+                script {
+                    echo "Building the application..."
+                    bat 'mvn clean install -f IronByteIntern/pom.xml'
+                    bat 'npm install --prefix IronByte'
+                    bat 'npm run build --prefix IronByte'
+                }
+            }
+        }
         
-    //     stage('Build Spring Boot') {
-    //         steps {
-    //             script {
-    //                 echo "Building Spring Boot project..."
-    //                 dir('IronByteIntern') {
-    //                     bat 'mvn clean package'
-    //                 }
-    //             }
-    //         }
-    //     }
+        stage('Build Docker Images') {
+            steps {
+                script {
+                    echo "Building Docker images..."
+                    bat 'docker build -t ${DOCKERHUB_NAMESPACE}/ironbyteintern:latest IronByteIntern'
+                    bat 'docker build -t ${DOCKERHUB_NAMESPACE}/ironbyte:latest IronByte'
+                }
+            }
+        }
         
-    //     stage('Build Docker Images') {
-    //         steps {
-    //             script {
-    //                 echo "Building Docker images..."
-    //                 docker.build("${DOCKERHUB_NAMESPACE}/intern-angular", "IronByte/.")
-    //                 docker.build("${DOCKERHUB_NAMESPACE}/springboot-app", "IronByteIntern/.")
-    //             }
-    //         }
-    //     }
-        
-    //     stage('Push Docker Images') {
-    //         steps {
-    //             script {
-    //                 echo "Pushing Docker images..."
-    //                 docker.withRegistry('', "${DOCKER_CREDENTIALS_ID}") {
-    //                     docker.image("${DOCKERHUB_NAMESPACE}/intern-angular").push()
-    //                     docker.image("${DOCKERHUB_NAMESPACE}/springboot-app").push()
-    //                 }
-    //             }
-    //         }
-    //     }
+        stage('Push Docker Images') {
+            steps {
+                script {
+                    echo "Pushing Docker images to Docker Hub..."
+                    withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        bat 'docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%'
+                        bat 'docker push ${DOCKERHUB_NAMESPACE}/ironbyteintern:latest'
+                        bat 'docker push ${DOCKERHUB_NAMESPACE}/ironbyte:latest'
+                    }
+                }
+            }
+        }
         
         stage('Deploy') {
             steps {
                 echo "Deploying application using Docker Compose..."
-                bat 'docker-compose -f docker-compose.yml up -d'
+                bat 'docker-compose -f docker-compose.yml up --build -d'
             }
         }
     }
