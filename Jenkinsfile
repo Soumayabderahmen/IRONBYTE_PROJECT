@@ -12,10 +12,7 @@ pipeline {
         GITHUB_CREDENTIALS_ID = 'Soumaya' // Replace with your GitHub credentials ID
     }
     
-    // tools {
-    //     maven 'Maven 3.9.8' // Ensure Maven is configured in Jenkins global tool configuration
-    //     nodejs 'NodeJS 20'  // Ensure NodeJS is configured in Jenkins global tool configuration
-    // }
+
     
     stages {
         stage('Checkout') {
@@ -32,8 +29,10 @@ pipeline {
                 script {
                     echo "Building the application..."
                     bat 'mvn clean install -f IronByteIntern/pom.xml'
-                    bat 'npm install --prefix IronByte'
-                    bat 'npm run build --prefix IronByte'
+                    dir('IronByte') {
+                        bat 'npm install'
+                        bat 'npm run build'
+                    }
                 }
             }
         }
