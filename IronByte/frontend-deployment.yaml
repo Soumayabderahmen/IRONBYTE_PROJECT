@@ -11,10 +11,10 @@ spec:
     metadata:
       labels:
         app: frontend-angular
-    spec:
+  spec:
       containers:
-        - name: angular-frontend
-          image: soumayaabderahmen/angular-app-iron:latest  # Mettez à jour avec le nom correct de votre image Angular
+        - name: ironbytepipeline-angular-1
+          image: ironbytepipeline-angular:latest  # Mettez à jour avec le nom correct de votre image Angular
           ports:
             - containerPort: 80
 ---
