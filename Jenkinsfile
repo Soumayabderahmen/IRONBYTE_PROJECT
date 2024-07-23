@@ -35,10 +35,13 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
+        stage('Build Docker Images') {
             steps {
-                echo "Deploying application using Docker Compose..."
-                bat 'docker-compose -f docker-compose.yml up --build -d'
+                script {
+                    echo "Building Docker images..."
+                    bat 'docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyteintern:latest ./IronByteIntern'
+                    bat 'docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyte:latest ./IronByte'
+                }
             }
         }
         
@@ -52,6 +55,13 @@ pipeline {
                         bat "docker push ${env.DOCKERHUB_NAMESPACE}/ironbyte:latest"
                     }
                 }
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                echo "Deploying application using Docker Compose..."
+                bat 'docker-compose -f docker-compose.yml up --build -d'
             }
         }
         

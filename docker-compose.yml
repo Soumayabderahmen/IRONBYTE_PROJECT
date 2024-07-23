@@ -33,7 +33,6 @@ services:
       MYSQL_DATABASE: ironbyte
       MYSQL_ROOT_PASSWORD: root
   angular:
-      image: ironbytepipeline-angular
       build: ./IronByte
       ports:
       - "4200:80"
