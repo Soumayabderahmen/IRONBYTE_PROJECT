@@ -35,17 +35,18 @@ pipeline {
             }
         }
         
-        stage('Build Docker Images') {
+      stage('Build Docker Images') {
             steps {
                 script {
                     echo "Building Docker images..."
-                    bat 'docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyteintern:latest ./IronByteIntern'
-                    bat 'docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyte:latest ./IronByte'
+                    bat "docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyteintern:latest IronByteIntern"
+                    bat "docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyte:latest IronByte"
                 }
             }
         }
+
         
-        stage('Push Docker Images') {
+       stage('Push Docker Images') {
             steps {
                 script {
                     echo "Pushing Docker images to Docker Hub..."
@@ -57,6 +58,7 @@ pipeline {
                 }
             }
         }
+
         
         stage('Deploy') {
             steps {
