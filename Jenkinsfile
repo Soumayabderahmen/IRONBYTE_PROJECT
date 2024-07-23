@@ -12,8 +12,6 @@ pipeline {
         GITHUB_CREDENTIALS_ID = 'Soumaya' // Replace with your GitHub credentials ID
     }
     
-   
-    
     stages {
         stage('Checkout') {
             steps {
@@ -37,13 +35,10 @@ pipeline {
             }
         }
         
-        stage('Build Docker Images') {
+        stage('Deploy') {
             steps {
-                script {
-                    echo "Building Docker images..."
-                    bat "docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyteintern:latest IronByteIntern"
-                    bat "docker build -t ${env.DOCKERHUB_NAMESPACE}/ironbyte:latest IronByte"
-                }
+                echo "Deploying application using Docker Compose..."
+                bat 'docker-compose -f docker-compose.yml up --build -d'
             }
         }
         
@@ -60,10 +55,20 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
+        stage('Deploy to Minikube') {
             steps {
-                echo "Deploying application using Docker Compose..."
-                bat 'docker-compose -f docker-compose.yml up --build -d'
+                script {
+                    echo "Deploying application to Minikube..."
+                    bat 'minikube start --driver=docker'
+                    bat 'kubectl config use-context minikube'
+                    
+                    // Apply Kubernetes configurations in the jenkins namespace
+                    bat 'kubectl apply -f ironbyteintern/backend-deployment.yaml -n jenkins'
+                    bat 'kubectl apply -f ironbyteintern/mysql-configMap.yaml -n jenkins'
+                    bat 'kubectl apply -f ironbyteintern/mysql-secrets.yaml -n jenkins'
+                    bat 'kubectl apply -f ironbyteintern/db-deployment.yaml -n jenkins'
+                    bat 'kubectl apply -f ironbyte/frontend-deployment.yaml -n jenkins'
+                }
             }
         }
     }
