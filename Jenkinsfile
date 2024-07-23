@@ -12,6 +12,8 @@ pipeline {
         GITHUB_CREDENTIALS_ID = 'Soumaya' // Replace with your GitHub credentials ID
     }
     
+   
+    
     stages {
         stage('Checkout') {
             steps {
@@ -35,7 +37,7 @@ pipeline {
             }
         }
         
-      stage('Build Docker Images') {
+        stage('Build Docker Images') {
             steps {
                 script {
                     echo "Building Docker images..."
@@ -44,9 +46,8 @@ pipeline {
                 }
             }
         }
-
         
-       stage('Push Docker Images') {
+        stage('Push Docker Images') {
             steps {
                 script {
                     echo "Pushing Docker images to Docker Hub..."
@@ -58,7 +59,6 @@ pipeline {
                 }
             }
         }
-
         
         stage('Deploy') {
             steps {
@@ -66,7 +66,6 @@ pipeline {
                 bat 'docker-compose -f docker-compose.yml up --build -d'
             }
         }
-        
         stage('Deploy to Minikube') {
             steps {
                 script {
