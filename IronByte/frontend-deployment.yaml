@@ -15,7 +15,7 @@ spec:
     spec:  
       containers:
         - name: ironbytepipeline-angular-1
-          image: ironbytepipeline-angular:latest  # Mettez à jour avec le nom correct de votre image Angular
+          image: soumayaabderahmen/ironbytepipeline-angular	  # Mettez à jour avec le nom correct de votre image Angular
           ports:
             - containerPort: 80
 ---
