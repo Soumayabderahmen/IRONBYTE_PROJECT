@@ -66,12 +66,11 @@ pipeline {
                 bat 'docker-compose -f docker-compose.yml up --build -d'
             }
         }
-        stage('Deploy to Minikube') {
+        stage('Deploy to K8s') {
             steps {
                 script {
                     echo "Deploying application to Minikube..."
-                    bat 'minikube start --driver=docker'
-                    bat 'kubectl config use-context minikube'
+              
                     
                     // Apply Kubernetes configurations in the jenkins namespace
                     bat 'kubectl apply -f ironbyteintern/backend-deployment.yaml -n jenkins'

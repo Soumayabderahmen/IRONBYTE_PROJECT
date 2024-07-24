@@ -12,7 +12,7 @@ spec:
     metadata:
       labels:
         app: frontend-angular
-    spec:  # Correction de l'indentation ici
+    spec:  
       containers:
         - name: ironbytepipeline-angular-1
           image: ironbytepipeline-angular:latest  # Mettez à jour avec le nom correct de votre image Angular
