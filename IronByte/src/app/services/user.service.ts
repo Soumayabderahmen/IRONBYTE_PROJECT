@@ -7,14 +7,12 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  public apiUrl = 'http://localhost:8060/api/users';
+  public apiUrl = 'http://localhost/api/users';
 
   constructor(private http: HttpClient) {}
 
-
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl+'/getAllUsers');
-
+    return this.http.get<User[]>(`${this.apiUrl}/getAllUsers`);
   }
 
   createUser(user: User): Observable<User> {
