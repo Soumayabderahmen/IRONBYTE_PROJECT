@@ -7,9 +7,8 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
- // public apiUrl = 'http://localhost:8060/api/users';
+ public apiUrl = 'http://localhost:8060/api/users';
 // Utiliser le nom du service Kubernetes et le port exposé
-public apiUrl = 'http://springboot-crud-svc:8080/api/users';
   constructor(private http: HttpClient) {}
 
   getAllUsers(): Observable<User[]> {
