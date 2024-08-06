@@ -1,31 +1,23 @@
-# Stage 1: Compile and Build Angular codebase
+#Download Node Alpine image
+FROM node:alpine As build
 
-# Use official Node.js image as the base image
-FROM node:latest as build
+#Setup the working directory
+WORKDIR /usr/src/app
 
-# Set the working directory
-WORKDIR /usr/local/app
+#Copy package.json
+COPY package.json package-lock.json ./
 
-# Add the source code to app
-COPY ./ /usr/local/app/
-
-# Install all the dependencies
+#Install dependencies
 RUN npm install
 
-# Generate the build of the application
-RUN npm run build
+#Copy other files and folder to working directory
+COPY . .
 
-# Stage 2: Serve app with Nginx server
+#Build Angular application in PROD mode
+RUN npm run build --prod
 
-# Use official Nginx image as the base image
-FROM nginx:latest
-
-# Copy the build output to replace the default Nginx contents
-COPY --from=build /usr/local/app/dist/iron-byte /usr/share/nginx/html
-COPY src/nginx/etc/conf.d/default.conf /etc/nginx/conf.d/default.conf
-
-# Expose port 80
+#Download NGINX Image
+FROM nginx:alpine
 EXPOSE 80
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+#Copy built angular app files to NGINX HTML folder
+COPY --from=build /usr/src/app/dist/iron-byte/ /usr/share/nginx/html
