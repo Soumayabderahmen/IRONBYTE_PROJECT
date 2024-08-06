@@ -8,6 +8,8 @@ import { User } from '../models/user';
 })
 export class UserService {
  public apiUrl = 'http://springboot-crud-svc/api/users';
+ //public apiUrl = 'http://localhost:8060/api/users';
+
 // Utiliser le nom du service Kubernetes et le port exposé
   constructor(private http: HttpClient) {}
 
