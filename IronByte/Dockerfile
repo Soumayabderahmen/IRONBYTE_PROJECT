@@ -22,6 +22,7 @@ FROM nginx:latest
 
 # Copy the build output to replace the default Nginx contents
 COPY --from=build /usr/local/app/dist/iron-byte /usr/share/nginx/html
+COPY src/nginx/etc/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80
