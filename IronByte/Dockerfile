@@ -21,3 +21,4 @@ FROM nginx:alpine
 EXPOSE 80
 #Copy built angular app files to NGINX HTML folder
 COPY --from=build /usr/src/app/dist/iron-byte/ /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
