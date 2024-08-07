@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
-  namespace: jenkins
 spec:
   replicas: 1
   selector:
@@ -23,7 +22,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
-  namespace: jenkins
 spec:
   selector:
     app: frontend-angular
@@ -31,4 +29,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: NodePort
+  type: LoadBalancer

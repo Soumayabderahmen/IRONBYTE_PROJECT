@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: springboot-deployment
-  namespace: jenkins
 spec:
   replicas: 3
   selector:
@@ -44,12 +43,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: springboot-crud-svc
-  namespace: jenkins
 spec:
   selector:
     app: springboot-k8s-mysql
   ports:
     - protocol: TCP
       port: 8080
-      targetPort: 8080
-  type: NodePort
+      targetPort: 8060
+  type: LoadBalancer

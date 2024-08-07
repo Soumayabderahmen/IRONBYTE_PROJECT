@@ -73,11 +73,11 @@ pipeline {
               
                     
                     // Apply Kubernetes configurations in the jenkins namespace
-                    bat 'kubectl apply -f ironbyteintern/backend-deployment.yaml -n jenkins'
-                    bat 'kubectl apply -f ironbyteintern/mysql-configMap.yaml -n jenkins'
-                    bat 'kubectl apply -f ironbyteintern/mysql-secrets.yaml -n jenkins'
-                    bat 'kubectl apply -f ironbyteintern/db-deployment.yaml -n jenkins'
-                    bat 'kubectl apply -f ironbyte/frontend-deployment.yaml -n jenkins'
+                    bat 'kubectl apply -f ironbyteintern/backend-deployment.yaml'
+                    bat 'kubectl apply -f ironbyteintern/mysql-configMap.yaml'
+                    bat 'kubectl apply -f ironbyteintern/mysql-secrets.yaml'
+                    bat 'kubectl apply -f ironbyteintern/db-deployment.yaml'
+                    bat 'kubectl apply -f ironbyte/frontend-deployment.yaml'
                 }
             }
         }
