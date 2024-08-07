@@ -54,4 +54,4 @@ spec:
   selector: # MySQL Pod should contain same labels
     app: mysql
     tier: database
-  type: LoadBalancer 
+  clusterIP: None 
