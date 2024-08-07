@@ -17,7 +17,7 @@ spec:
         - name: ironbytepipeline-springboot-app-1
           image: soumayaabderahmen/springboot-app
           ports:
-            - containerPort: 8080
+            - containerPort: 8060
           env:   # Setting Environmental Variables
             - name: MYSQL_HOST   # Setting Database host address from configMap
               valueFrom:
