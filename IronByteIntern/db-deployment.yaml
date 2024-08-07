@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  namespace: jenkins
   labels:
     app: mysql
     tier: database
@@ -54,4 +55,4 @@ spec:
   selector: # MySQL Pod should contain same labels
     app: mysql
     tier: database
-  type: LoadBalancer 
+  clusterIP: None # We use DNS, thus ClusterIP is not relevant
