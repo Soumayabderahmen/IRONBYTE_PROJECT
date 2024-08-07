@@ -6,7 +6,7 @@ services:
     restart: always
     build: ./IronByteIntern
     ports:
-      - 8060:8060
+      - 8060:9090
     networks:
       - networkmysql
     volumes:
