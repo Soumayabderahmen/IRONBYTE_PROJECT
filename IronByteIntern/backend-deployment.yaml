@@ -16,7 +16,7 @@ spec:
         - name: ironbytepipeline-springboot-app-1
           image: soumayaabderahmen/springboot-app
           ports:
-            - containerPort: 8080
+            - containerPort: 8060  # Port entendu dans le conteneur
           env:   # Setting Environmental Variables
             - name: MYSQL_HOST   # Setting Database host address from configMap
               valueFrom:
@@ -48,6 +48,6 @@ spec:
     app: springboot-k8s-mysql
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8080     # Port externe sur lequel le service expose l'application
+      targetPort: 8060  # Port interne sur lequel l'application écoute dans le conteneur
   type: NodePort

@@ -23,7 +23,8 @@ public class BeansConfig {
         config.setAllowCredentials(true);
         config.setAllowedOrigins(Arrays.asList(
                 "http://localhost:4200",
-                "http://localhost:4300"
+                "http://localhost:4300",
+                "http://localhost:*"
         ));
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.ORIGIN,
