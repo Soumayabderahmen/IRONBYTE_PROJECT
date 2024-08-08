@@ -11,7 +11,7 @@ public class CrossConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**") // Correct mapping pattern
-                .allowedOrigins("http://localhost:*") // Include both URLs
+                .allowedOrigins("http://localhost") // Include both URLs
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true)
