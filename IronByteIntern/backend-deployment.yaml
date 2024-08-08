@@ -48,6 +48,6 @@ spec:
     app: springboot-k8s-mysql
   ports:
     - protocol: TCP
-      port: 8080     # Port externe sur lequel le service expose l'application
+      port: 8060     # Port externe sur lequel le service expose l'application
       targetPort: 8060  # Port interne sur lequel l'application écoute dans le conteneur
   type: NodePort
