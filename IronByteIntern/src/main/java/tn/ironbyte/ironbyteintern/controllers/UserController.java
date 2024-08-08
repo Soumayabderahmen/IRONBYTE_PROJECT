@@ -10,7 +10,7 @@ import tn.ironbyte.ironbyteintern.services.IUserService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200,http://localhost:4300,http://localhost:*")
+@CrossOrigin(origins = "http://localhost:*")
 @RestController///choisir le type de body en form json
 @RequestMapping("users")// le path du controller → tjr en minuscule
 @AllArgsConstructor////important pour l'injection de dependance
