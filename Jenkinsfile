@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     environment {
         DOCKER_CREDENTIALS_ID = 'soumayaabderahmen'
         MYSQL_DATABASE = 'ironbyte'
@@ -11,7 +11,7 @@ pipeline {
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya'
     }
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -21,7 +21,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Build') {
             steps {
                 script {
@@ -44,7 +44,7 @@ pipeline {
                 }
             }
         }
-    
+
         stage('Deploy') {
             steps {
                 echo "Deploying application using Docker Compose..."
@@ -78,7 +78,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always {
             echo "Pipeline completed."
