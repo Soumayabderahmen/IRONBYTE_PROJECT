@@ -36,16 +36,19 @@ pipeline {
                 }
             }
         }
+
         stage('SonarQube Analysis') {
             steps {
                 script {
                     echo "Running SonarQube analysis..."
-                    withSonarQubeEnv('jenkins-sonar') {
+                    withSonarQubeEnv('jenkins-sonar') { // Ensure this matches the SonarQube server configured in Jenkins
+                    dir('IronByteIntern') { // Change to the directory containing the pom.xml
                         bat "mvn sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_TOKEN}"
-                    }
-                    }
                 }
+            }
         }
+    }
+}
         stage('Build Docker Images') {
             steps {
                 script {
