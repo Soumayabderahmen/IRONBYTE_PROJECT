@@ -1,9 +1,7 @@
 version: "3"
 services:
   springboot-app:
-    # container_name: spring-app
     image: soumayaabderahmen/springboot-app
-    restart: always
     build: ./IronByteIntern
     ports:
       - 8060:8060
@@ -11,11 +9,15 @@ services:
       - networkmysql
     volumes:
       - mysql-data:/var/lib/mysql
+    depends_on:
+      - mysqldb  # Ajouté
     environment:
       MYSQL_HOST: mysqldb
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_PORT: 3306
+      MYSQL_DB_NAME: ironbyte  # Ajouté # Utilisé par Spring Boot
+
   mysqldb:
     container_name: mysqldb
     image: mysql
@@ -26,22 +28,20 @@ services:
     networks:
       - networkmysql
     environment:
-      MYSQL_DATABASE: ironbyte
+      MYSQL_DATABASE: ironbyte # Utilisé lors de l'initialisation de MySQL
       MYSQL_ROOT_PASSWORD: root
+
   angular:
-      image: soumayaabderahmen/ironbytepipeline-angular
-      build: ./IronByte
-      ports:
+    image: soumayaabderahmen/ironbytepipeline-angular
+    build: ./IronByte
+    ports:
       - "4200:80"
-      networks:
+    networks:
       - networkmysql
-      volumes:
-      - mysql-data:/var/lib/mysql
-     
 
 networks:
   networkmysql:
     driver: bridge
+
 volumes:
   mysql-data:
-

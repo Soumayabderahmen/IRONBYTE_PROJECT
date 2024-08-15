@@ -10,6 +10,8 @@ pipeline {
         MYSQL_PASSWORD = 'root'
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya'
+        SONARQUBE_URL = 'http://localhost:9000' // SonarQube server URL
+        SONARQUBE_TOKEN = 'sq-token' // The name of your SonarQube token
     }
 
     stages {
@@ -34,7 +36,16 @@ pipeline {
                 }
             }
         }
-
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    echo "Running SonarQube analysis..."
+                    withSonarQubeEnv('jenkins-sonar') {
+                        bat "mvn sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_TOKEN}"
+                    }
+                    }
+                }
+        }
         stage('Build Docker Images') {
             steps {
                 script {
