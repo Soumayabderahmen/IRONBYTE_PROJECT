@@ -10,8 +10,9 @@ pipeline {
         MYSQL_PASSWORD = 'root'
         DOCKERHUB_NAMESPACE = 'soumayaabderahmen'
         GITHUB_CREDENTIALS_ID = 'Soumaya'
-        SONARQUBE_URL = 'http://localhost:9000' // SonarQube server URL
-        SONARQUBE_TOKEN = 'sq-token' // The name of your SonarQube token
+        SONARQUBE_URL = 'http://localhost:9000'
+        SONARQUBE_TOKEN = credentials('sonarqube-token') // Utiliser l'ID du token ajouté dans Jenkins
+        SONARQUBE_TOKEN_ANGULAR = credentials('sonarqube-angular-token')
     }
 
     stages {
@@ -36,19 +37,28 @@ pipeline {
                 }
             }
         }
-
-        stage('SonarQube Analysis') {
+        stage('SonarQube Analysis for Spring Boot') {
             steps {
                 script {
-                    echo "Running SonarQube analysis..."
-                    withSonarQubeEnv('jenkins-sonar') { // Ensure this matches the SonarQube server configured in Jenkins
-                    dir('IronByteIntern') { // Change to the directory containing the pom.xml
-                        bat "mvn sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_TOKEN}"
+                    withSonarQubeEnv('SonarQube-SpringBoot') { // Assurez-vous que ce nom correspond à la configuration SonarQube dans Jenkins
+                        dir('IronByteIntern') {
+                            bat "mvn clean verify sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName='IRONBYTE_PROJECT' -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=${env.SONARQUBE_TOKEN}"
+                        }
+                    }
                 }
             }
         }
-    }
-}
+        stage('SonarQube Analysis for Angular') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube-Angular') { // Assurez-vous que ce nom correspond à la configuration SonarQube dans Jenkins
+                        dir('IronByte') {
+                            bat "sonar-scanner.bat -D\"sonar.projectKey=IRONBYTE_ANGULAR_PROJECT\" -D\"sonar.sources=src\" -D\"sonar.host.url=${env.SONARQUBE_URL}\" -D\"sonar.token=${env.SONARQUBE_TOKEN_ANGULAR}\""
+                        }
+                    }
+                }
+            }
+        }
         stage('Build Docker Images') {
             steps {
                 script {
