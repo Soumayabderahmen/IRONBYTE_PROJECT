@@ -42,7 +42,8 @@ pipeline {
                 script {
                     withSonarQubeEnv('SonarQube-SpringBoot') { // Assurez-vous que ce nom correspond à la configuration SonarQube dans Jenkins
                         dir('IronByteIntern') {
-                            bat "mvn clean verify sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName='IRONBYTE_PROJECT' -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=${env.SONARQUBE_TOKEN}"
+                            //bat "mvn clean verify sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName='IRONBYTE_PROJECT' -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=${env.SONARQUBE_TOKEN}"
+                            bat mvn "sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName=IRONBYTE_PROJECT -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=${env.SONARQUBE_TOKEN}"
                         }
                     }
                 }
