@@ -44,7 +44,7 @@ pipeline {
                         dir('IronByteIntern') {
                             //bat "mvn clean verify sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName='IRONBYTE_PROJECT' -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=${env.SONARQUBE_TOKEN}"
                             //bat "mvn sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName=IRONBYTE_PROJECT -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=sqp_ba5c7c8331779935287f16415aa0d324b1ac7a89" 
-                            bat "mvn sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName=IRONBYTE_PROJECT -Dsonar.host.url=http://172.17.0.2:9000 -Dsonar.token=sqp_ba5c7c8331779935287f16415aa0d324b1ac7a89"
+                            bat "mvn sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName=IRONBYTE_PROJECT -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_bbd7623f4c2c599d6bf30bc432b7bb7142cfdee4"
 
                                                    }
                     }
