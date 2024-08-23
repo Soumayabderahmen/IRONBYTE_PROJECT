@@ -58,7 +58,7 @@ pipeline {
             withSonarQubeEnv('SonarQube-SpringBoot') {
                 dir('IronByteIntern') {
                     withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONARQUBE_TOKEN')]) {
-                        bat "mvn sonar:sonar -D\"sonar.projectKey=IRONBYTE_PROJECT\" -D\"sonar.projectName=IRONBYTE_PROJECT\" -D\"sonar.host.url=${env.SONARQUBE_URL}\" -D\"sonar.token=${SONARQUBE_TOKEN}\""
+                            bat "mvn sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName=IRONBYTE_PROJECT -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_bbd7623f4c2c599d6bf30bc432b7bb7142cfdee4"
                     }
                 }
             }
