@@ -37,16 +37,29 @@ pipeline {
                 }
             }
         }
+         stage('Run Unit Tests') {
+            steps {
+                script {
+                    echo "Running JUnit tests..."
+                    dir('IronByteIntern') {
+                        bat 'mvn test'
+                    }
+                }
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml' // Emplacement des rapports JUnit
+                }
+            }
+        }
         stage('SonarQube Analysis for Spring Boot') {
             steps {
                 script {
-                    withSonarQubeEnv('SonarQube-SpringBoot') { // Assurez-vous que ce nom correspond à la configuration SonarQube dans Jenkins
+                    withSonarQubeEnv('SonarQube-SpringBoot') { 
                         dir('IronByteIntern') {
-                            //bat "mvn clean verify sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName='IRONBYTE_PROJECT' -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=${env.SONARQUBE_TOKEN}"
-                            //bat "mvn sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName=IRONBYTE_PROJECT -Dsonar.host.url=${env.SONARQUBE_URL} -Dsonar.token=sqp_ba5c7c8331779935287f16415aa0d324b1ac7a89" 
-                            bat "mvn sonar:sonar -Dsonar.projectKey=IRONBYTE_PROJECT -Dsonar.projectName=IRONBYTE_PROJECT -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_bbd7623f4c2c599d6bf30bc432b7bb7142cfdee4"
+                            bat "mvn sonar:sonar -D\"sonar.projectKey=IRONBYTE_PROJECT\" -D\"sonar.projectName=IRONBYTE_PROJECT\" -D\"sonar.host.url=${env.SONARQUBE_URL}\" -D\"sonar.token=${env.SONARQUBE_TOKEN}\""
 
-                                                   }
+                        }
                     }
                 }
             }
@@ -54,7 +67,7 @@ pipeline {
         stage('SonarQube Analysis for Angular') {
             steps {
                 script {
-                    withSonarQubeEnv('SonarQube-Angular') { // Assurez-vous que ce nom correspond à la configuration SonarQube dans Jenkins
+                    withSonarQubeEnv('SonarQube-Angular') { 
                         dir('IronByte') {
                             bat "sonar-scanner.bat -D\"sonar.projectKey=IRONBYTE_ANGULAR_PROJECT\" -D\"sonar.sources=src\" -D\"sonar.host.url=${env.SONARQUBE_URL}\" -D\"sonar.token=${env.SONARQUBE_TOKEN_ANGULAR}\""
                         }
