@@ -1,2 +1,4 @@
-tn\ironbyte\ironbyteintern\services\UserServiceTest.class
+tn\ironbyte\ironbyteintern\services\UserServiceImplTest.class
 tn\ironbyte\ironbyteintern\IronByteInternApplicationTests.class
+tn\ironbyte\ironbyteintern\services\UserServiceTest.class
+tn\ironbyte\ironbyteintern\controllers\UserControllerTest.class
