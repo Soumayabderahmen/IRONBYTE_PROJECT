@@ -1,439 +1,519 @@
-
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Knight - Free Bootstrap 4 Product Landing Page Template</title>
-    <meta name="description"
-          content="Knight is a beautiful Bootstrap 4 template for product landing pages."/>
-
-    <!--Inter UI font-->
-   
-</head>
-<body>
-
-<!--navigation-->
-<section class="smart-scroll">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.html">
-                IronByte
-            </a>
-            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
-                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span data-feather="grid"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#features">Features</a>
-                    </li>
-                   
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#pricing">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#faq">FAQ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#blog">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" routerLink="users">Leadership</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll d-flex flex-row align-items-center text-primary" href="#">
-                            <em data-feather="layout" width="18" height="18" class="mr-2"></em>
-                            Try Generator
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-</section>
-
-<!--hero header-->
-<section class="py-7 py-md-0 bg-hero" id="home">
-    <div class="container">
-        <div class="row vh-md-100">
-            <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
-                <h1 class="heading-black text-capitalize">Quickly build landing pages with IronByte</h1>
-                <p class="lead py-3">IronByte is a platform that helps freelancers and companies build beautiful landing
-                    pages in minutes. Sign up for free.</p>
-                <button class="btn btn-primary d-inline-flex flex-row align-items-center">
-                    Get started now
-                    <em class="ml-2" data-feather="arrow-right"></em>
-                </button>
+<div class="container-fluid position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>IronByte</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a routerLink="" class="nav-item nav-link active">Home</a>
+                <a href="#about" class="nav-item nav-link">About</a>
+                <a href="#service" class="nav-item nav-link">Services</a>
+                <a routerLink="users" class="nav-item nav-link">Team Members</a>
+                <a href="#contact" class="nav-item nav-link">Contact</a>
             </div>
         </div>
-    </div>
-</section>
+    </nav>
 
-<!-- features section -->
-<section class="pt-6 pb-7" id="features">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto text-center">
-                <h2 class="heading-black">Knight offers everything you need.</h2>
-                <p class="text-muted lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi
-                    commodo, tempus odio a, vestibulum nibh.</p>
+    <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100" src="assets/img/carousel-1.jpg" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital Solution</h1>
+                        <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free Quote</a>
+                        <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-10 mx-auto">
-                <div class="row feature-boxes">
-                    <div class="col-md-6 box">
-                        <div class="icon-box box-primary">
-                            <div class="icon-box-inner">
-                                <span data-feather="edit-3" width="35" height="35"></span>
-                            </div>
-                        </div>
-                        <h5>Create once. Share everywhere.</h5>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in
-                            nisi commodo, tempus odio a, vestibulum nibh.</p>
-                    </div>
-                    <div class="col-md-6 box">
-                        <div class="icon-box box-success">
-                            <div class="icon-box-inner">
-                                <span data-feather="monitor" width="35" height="35"></span>
-                            </div>
-                        </div>
-                        <h5>Unlimited devices</h5>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in
-                            nisi commodo, tempus odio a, vestibulum nibh.</p>
-                    </div>
-                    <div class="col-md-6 box">
-                        <div class="icon-box box-danger">
-                            <div class="icon-box-inner">
-                                <span data-feather="layout" width="35" height="35"></span>
-                            </div>
-                        </div>
-                        <h5>Beautiful tempates & layouts</h5>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in
-                            nisi commodo, tempus odio a, vestibulum nibh.</p>
-                    </div>
-                    <div class="col-md-6 box">
-                        <div class="icon-box box-info">
-                            <div class="icon-box-inner">
-                                <span data-feather="globe" width="35" height="35"></span>
-                            </div>
-                        </div>
-                        <h5>Available globally</h5>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in
-                            nisi commodo, tempus odio a, vestibulum nibh.</p>
+            <div class="carousel-item">
+                <img class="w-100" src="assets/img/carousel-2.jpg" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital Solution</h1>
+                        <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free Quote</a>
+                        <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mt-6">
-            <div class="col-md-6 mr-auto">
-                <h2>IronByte is more than just a page builder.</h2>
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis pulvinar vestibulum. Donec eleifend, sem sed dictum mattis, turpis purus placerat eros.</p>
-                <a href="#" class="btn btn-light">
-                    Try the live demo
-                </a>
-            </div>
-            <div class="col-md-5">
-                <div class="slick-about">
-                    <img src="/assets/img/blog-1.jpg" class="img-fluid rounded d-block mx-auto" alt="Work 1"/>
-                    <img src="/assets/img/blog-2.jpg" class="img-fluid rounded d-block mx-auto" alt="Work 2"/>
-                    <img src="/assets/img/blog-3.jpg" class="img-fluid rounded d-block mx-auto" alt="Work 3"/>
-                </div>
-            </div>
-        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-</section>
-
-<!--pricing section-->
-<section class="py-7 bg-dark section-angle top-right bottom-right" id="pricing">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto text-center">
-                <h2 class="text-white heading-black">Choose your pricing plan.</h2>
-                <p class="text-light lead">Simply pricing - 7 Days free trial</p>
-            </div>
-        </div>
-        <!--pricing tables-->
-        <div class="row pt-5 pricing-table">
-            <div class="col-12 mx-auto">
-                <div class="card-deck pricing-table">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title pt-3">Personal</h3>
-                            <h2 class="card-title text-primary mb-0 pt-4">$59</h2>
-                            <div class="text-muted font-weight-medium mt-2">per month</div>
-                            <ul class="list-unstyled pricing-list">
-                                <li>1 user</li>
-                                <li>10 websites</li>
-                                <li>Access to premium templates</li>
-                                <li>Basic support</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary">
-                                Start free trial
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title pt-3">Agency</h3>
-                            <h2 class="card-title text-info mb-0 pt-4">$159</h2>
-                            <div class="text-muted font-weight-medium mt-2">per month</div>
-                            <ul class="list-unstyled pricing-list">
-                                <li>2-15 users</li>
-                                <li>50 websites</li>
-                                <li>Access to premium templates</li>
-                                <li>Priority support</li>
-                            </ul>
-                            <a href="#" class="btn btn-info">
-                                Start free trial
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title pt-3">Enterprise</h3>
-                            <h2 class="card-title text-primary mb-0 pt-4">$499</h2>
-                            <div class="text-muted font-weight-medium mt-2">per month</div>
-                            <ul class="list-unstyled pricing-list">
-                                <li>Unlimited users</li>
-                                <li>Unlimited websites</li>
-                                <li>Access to premium templates</li>
-                                <li>24/7 support</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary">
-                                Start free trial
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-6">
-            <div class="col-md-4 mr-auto">
-                <h3>Everything is covered.</h3>
-                <p class="lead">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo, tempus odio a,
-                    vestibulum nibh.
-                </p>
-            </div>
-            <div class="col-md-7 offset-md-1">
-                <ul class="features-list">
-                    <li>Weekly new templates</li>
-                    <li>Access to new features</li>
-                    <li>MailChimp integration</li>
-                    <li>Stripe integration</li>
-                    <li>100 refund guarantee</li>
-                    <li>Advance SEO tools</li>
-                    <li>Free unlimited support</li>
-                </ul>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-8 col-12 divider top-divider mx-auto pt-5 text-center">
-                <h3>Try IronByte free for 7 days</h3>
-                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo,
-                    tempus odio a, vestibulum nibh.</p>
-                <button class="btn btn-primary">
-                    Create your account
-                </button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--faq section-->
-<section class="py-7" id="faq">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto text-center">
-                <h2>Frequently asked questions</h2>
-                <p class="text-muted lead">Answers to most common questions.</p>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-10 mx-auto">
-                <div class="row">
-                    <div class="col-md-6 mb-5">
-                        <h6>Can I try it for free?</h6>
-                        <p class="text-muted">Nam liber tempor cum soluta nobis eleifend option congue nihil imper per tem por legere me doming.</p>
-                    </div>
-                    <div class="col-md-6 mb-5">
-                        <h6>Do you have hidden fees?</h6>
-                        <p class="text-muted">Nam liber tempor cum soluta nobis eleifend option congue nihil imper per tem por legere me doming.</p>
-                    </div>
-                    <div class="col-md-6 mb-5">
-                        <h6>What are the payment methods you accept?</h6>
-                        <p class="text-muted">Nam liber tempor cum soluta nobis eleifend option congue nihil imper per tem por legere me doming.</p>
-                    </div>
-                    <div class="col-md-6 mb-5">
-                        <h6>How often do you release updates?</h6>
-                        <p class="text-muted">Nam liber tempor cum soluta nobis eleifend option congue nihil imper per tem por legere me doming.</p>
-                    </div>
-                    <div class="col-md-6 mb-5">
-                        <h6>What is your refund policy?</h6>
-                        <p class="text-muted">Nam liber tempor cum soluta nobis eleifend option congue nihil imper per tem por legere me doming.</p>
-                    </div>
-                    <div class="col-md-6 mb-5">
-                        <h6>How can I contact you?</h6>
-                        <p class="text-muted">Nam liber tempor cum soluta nobis eleifend option congue nihil imper per tem por legere me doming.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-md-6 mx-auto text-center">
-                <h5 class="mb-4">Have questions?</h5>
-                <a href="#" class="btn btn-primary">Contact us</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--news section-->
-<section class="py-7 bg-dark section-angle top-left bottom-left" id="blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto text-center">
-                <h2 class="heading-black">News from IronByte.</h2>
-                <p class="text-muted lead">What's new at IronByte.</p>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card">
-                    <a href="#">
-                        <img class="card-img-top img-raised" src="/assets/img/blog-1.jpg" alt="Blog 1">
-                    </a>
-                    <div class="card-body">
-                        <a href="#" class="card-title mb-2"><h5>We launch new iOS & Android mobile apps</h5></a>
-                        <p class="text-muted small-xl mb-2">Sep 27, 2018</p>
-                        <p class="card-text">Nam liber tempor cum soluta nobis eleifend option congue nihil imper,
-                            consectetur adipiscing elit. <a href="#">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <a href="#">
-                        <img class="card-img-top img-raised" src="/assets/img/blog-2.jpg" alt="Blog 2">
-                    </a>
-                    <div class="card-body">
-                        <a href="#" class="card-title mb-2"><h5>New update is available for the editor</h5></a>
-                        <p class="text-muted small-xl mb-2">August 16, 2018</p>
-                        <p class="card-text">Nam liber tempor cum soluta nobis eleifend option congue nihil imper,
-                            consectetur adipiscing elit. <a href="#">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <a href="#">
-                        <img class="card-img-top img-raised" src="/assets/img/blog-3.jpg" alt="Blog 3">
-                    </a>
-                    <div class="card-body">
-                        <a href="#" class="card-title mb-2"><h5>The story of building #1 page builder</h5></a>
-                        <p class="text-muted small-xl mb-2">December 2nd, 2017</p>
-                        <p class="card-text">Nam liber tempor cum soluta nobis eleifend option congue nihil imper,
-                            consectetur adipiscing elit. <a href="#">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-6">
-            <div class="col-md-6 mx-auto text-center">
-                <a href="#" class="btn btn-primary">View all posts</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--footer-->
-<footer class="py-6">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-5 mr-auto">
-                <h5>About IronByte</h5>
-                <p class="text-muted">Magnis modipsae que voloratati andigen daepeditem quiate conecus aut labore.
-                    Laceaque quiae sitiorem rest non restibusaes maio es dem tumquam explabo.</p>
-                <ul class="list-inline social social-sm">
-                    <li class="list-inline-item">
-                        <a href=""><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href=""><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href=""><i class="fa fa-google-plus"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href=""><i class="fa fa-dribbble"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-2">
-                <h5>Legal</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#">Privacy</a></li>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Refund policy</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-2">
-                <h5>Partner</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#">Refer a friend</a></li>
-                    <li><a href="#">Affiliates</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-2">
-                <h5>Help</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Log in</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-12 text-muted text-center small-xl">
-                &copy; 2024 IronByte - All Rights Reserved
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!--scroll to top-->
-<div class="scroll-top">
-    <i class="fa fa-angle-up" aria-hidden="true"></i>
 </div>
+<!-- Navbar & Carousel End -->
 
-<!-- theme switcher (FOR DEMO ONLY - REMOVE FROM PRODUCTION)-->
-<div class="switcher-wrap">
-    <div class="switcher-trigger">
-        <span class="fa fa-gear"></span>
+
+<!-- Full Screen Search Start -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+            <div class="modal-header border-0">
+                <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex align-items-center justify-content-center">
+                <div class="input-group" style="max-width: 600px;">
+                    <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                    <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="color-switcher">
-        <h6>Color Switcher</h6>
-        <ul class="mt-3 clearfix">
-            <li class="bg-teal active" data-color="default" title="Default Teal"></li>
-            <li class="bg-purple" data-color="purple" title="Purple"></li>
-            <li class="bg-blue" data-color="blue" title="Blue"></li>
-            <li class="bg-red" data-color="red" title="Red"></li>
-            <li class="bg-green" data-color="green" title="Green"></li>
-            <li class="bg-indigo" data-color="indigo" title="Indigo"></li>
-            <li class="bg-orange" data-color="orange" title="Orange"></li>
-            <li class="bg-cyan" data-color="cyan" title="Cyan"></li>
-            <li class="bg-yellow" data-color="yellow" title="Yellow"></li>
-            <li class="bg-pink" data-color="pink" title="Pink"></li>
-        </ul>
-        <p>These are just demo colors. You can <b>easily</b> create your own color scheme.</p>
+</div>
+<!-- Full Screen Search End -->
+
+
+<!-- Facts Start -->
+<div class="container-fluid facts py-5 pt-lg-0">
+    <div class="container py-5 pt-lg-0">
+        <div class="row gx-0 justify-content-center"> <!-- Centering the columns -->
+            <div class="col-lg-4 wow zoomIn mb-4" data-wow-delay="0.1s" style="padding-right: 26px;"> <!-- Added mb-4 -->
+                <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                    <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                        <i class="fa fa-users text-primary"></i>
+                    </div>
+                    <div class="ps-4 text-center"> <!-- use text-center to center the text -->
+                        <h5 class="text-white mb-0">Happy Clients</h5>
+                        <h1 class="text-white mb-0" data-toggle="counter-up">123</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 wow zoomIn mb-4" data-wow-delay="0.3s"> <!-- Added mb-4 -->
+                <div class="bg-light shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                    <div class="bg-primary d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                        <i class="fa fa-check text-white"></i>
+                    </div>
+                    <div class="ps-4 text-center"> <!-- use text-center to center the text -->
+                        <h5 class="text-primary mb-0">Projects Done</h5>
+                        <h1 class="mb-0" data-toggle="counter-up">200</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Facts Start -->
+
+
+
+
+<!-- Service Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="service">
+    <div class="container py-5">
+        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+            <h5 class="fw-bold text-primary text-uppercase">Our Services</h5>
+            <h1 class="mb-0">Custom IT Solutions for Your Successful Business</h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                    <div class="service-icon">
+                        <i class="fa fa-cubes text-white"></i>
+                    </div>
+                    <h4 class="mb-3">Marketing Consulting</h4>
+                    <p class="m-0">Providing strategic guidance and insights to optimize traditional and digital marketing efforts, enhancing brand visibility and growth.</p>
+                    <a class="btn btn-lg btn-primary rounded" href="">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
+                <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                    <div class="service-icon">
+                        <i class="fa fa-chart-pie text-white"></i>
+                    </div>
+                    <h4 class="mb-3">Artificial Intelligence Software Development</h4>
+                    <p class="m-0">Building intelligent systems that learn, adapt, and optimize user experiences by leveraging advanced AI technologies and algorithms.</p>
+                    <a class="btn btn-lg btn-primary rounded" href="">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                    <div class="service-icon">
+                        <i class="fab fa-android text-white"></i>
+                    </div>
+                    <h4 class="mb-3">Internet of Things (IOT)</h4>
+                    <p class="m-0">Connecting devices and harnessing data-driven insights to revolutionize operations, enhancing connectivity and efficiency in various industries and contexts.</p>
+                    <a class="btn btn-lg btn-primary rounded" href="">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.9s">
+                <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                    <div class="service-icon">
+                        <i class="fa fa-code text-white"></i>
+                    </div>
+                    <h4 class="mb-3">Software Engineering</h4>
+                    <p class="m-0">Crafting innovative and scalable solutions tailored to meet evolving business needs through cutting-edge technology and expertise.</p>
+                    <a class="btn btn-lg btn-primary rounded" href="">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                    <div class="service-icon">
+                        <i class="fab fa-android text-white"></i>
+                    </div>
+                    <h4 class="mb-3">Mobile App Development</h4>
+                    <p class="m-0">Creating engaging and intuitive applications across iOS and Android platforms that seamlessly cater to user needs and preferences.</p>
+                    <a class="btn btn-lg btn-primary rounded" href="">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
+                <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                    <div class="service-icon">
+                        <i class="fa fa-search text-white"></i>
+                    </div>
+                    <h4 class="mb-3">Digital Marketing</h4>
+                    <p class="m-0">Leveraging online platforms and tools to create targeted, data-driven campaigns that drive engagement, conversions, and brand recognition.</p>
+                    <a class="btn btn-lg btn-primary rounded" href="">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <h5 class="fw-bold text-primary text-uppercase">Software development services</h5>
+                    <h4 class="mb-0">Iron Byte Software: Pioneering Future-Ready Software Solutions</h4>
+                    <p>At Iron Byte Software, we specialize in crafting versatile web applications that transcend conventional boundaries, offering tailored solutions adaptable to on-premises and cloud environments. Our commitment to innovation extends beyond functionality to encompass modern software development lifecycles.</p>
+                </div>
+                <h5 class="fw-bold text-primary text-uppercase">How can we help?</h5>
+                <ul class="list-unstyled" >
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Artificial Intelligence (AI)
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Payment systems and ecommerce solutions
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Mobile app development
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> IoT solutions
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Server and hosting solutions
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> DevOps and CI/CD consulting
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-5" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100 rounded" src="assets/img/blog.avif" style="object-fit: cover;" alt="Software Development Services">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Features End -->
+
+<style>
+.container-fluid {
+    background-color: #f8f9fa;
+}
+.section-title h5 {
+    font-size: 1.5rem;
+}
+.list-unstyled {
+    font-size: 1.2rem;
+}
+.list-unstyled li {
+    padding-left: 1.5rem;
+}
+.list-unstyled li i {
+    color: #007bff;
+    margin-right: 0.5rem;
+}
+</style>
+
+<!-- Features Start -->
+
+<!-- Blog Start -->
+<div class="testimonial-section">
+    <div class="container py-5">
+        <div class="text-center text-white">
+            <h1 class="text-uppercase" style="color: #f8f9fa;">Reviews From Our Happy Clients</h1>
+            <blockquote class="blockquote">
+                <p class="mb-4">We have never seen such a combination of speed, quality of solutions and customer communication skills in the market before. Iron Byte sets the bar very high.</p>
+                
+                <footer class="blockquote-footer text-white">Khaled Rashid <span class="stars">
+                    <br />★★★★★</span></footer>
+            </blockquote>
+        </div>
     </div>
 </div>
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<style>
+    .testimonial-section {
+        background-image: url('assets/img/back-1.avif');
+        background-size: cover;
+        background-position: center;
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .testimonial-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Shadow color */
+        z-index: 1; /* Make sure it's below text */
+        transform: translateY(var(--shadow-offset, -40px)); /* Use the offset variable */
+        transition: transform 0.1s ease; /* Transition for smooth effect */
+    }
 
-</body>
-</html>
+    .testimonial-section .container {
+        position: relative;
+        z-index: 2; /* Keep text above the shadow */
+    }
+    
+    blockquote {
+        font-size: 1.5rem;
+        font-weight: 100;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .stars {
+        color: gold;
+    }
+</style>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const scrolled = window.scrollY; // Get the number of pixels the document has been scrolled
+
+        // Calculate the shadow offset based on scroll position
+        const shadowOffset = Math.min(scrolled / 5, 40); // Adjust movement speed and maximum offset 
+
+        // Update the CSS variable on the testimonial section to control `::before` offset
+        document.querySelector('.testimonial-section').style.setProperty('--shadow-offset', `-${shadowOffset}px`);
+    });
+</script>
+<!-- Blog Start -->
+
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <!-- Image on the left side -->
+            <div class="col-lg-5" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100 rounded" src="assets/img/mark-1.jpg" style="object-fit: cover;" alt="Software Development Services">
+                </div>
+            </div>
+            <!-- Text on the right side -->
+            <div class="col-lg-7">
+                <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <h5 class="fw-bold text-primary text-uppercase">Marketing consulting services</h5>
+                    <h4 class="mb-0">Iron Byte Software: Pioneering Future-Ready Software Solutions</h4>
+                    <p>Our comprehensive marketing services fuse traditional expertise with cutting-edge digital strategies, ensuring a holistic approach to elevate your brand's presence. Our seasoned marketing consulting team provides strategic guidance, drawing from years of experience to tailor campaigns that resonate with your audience. From crafting compelling traditional campaigns to harnessing the power of digital platforms like Facebook, Instagram, and Google Ads, we create targeted, data-driven initiatives to maximize engagement and conversions. Our aim is not just to enhance visibility but to craft a brand narrative that captivates audiences across diverse channels, driving sustained growth and recognition.</p>
+                </div>
+                <h5 class="fw-bold text-primary text-uppercase" style="padding-left: 45px;">How can we help?</h5>
+                <ul class="list-unstyled" style="padding-left: 48px;">
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Marketing consulting
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Digital marketing implementation
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Social Media Marketing
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> SEO
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Content creation
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Comprehensive ad campaigns management
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Quote Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s"id="contact">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <div class="section-title position-relative pb-3 mb-5">
+                    <h5 class="fw-bold text-primary text-uppercase">Request A Quote</h5>
+                    <h1 class="mb-0">Need A Free Quote? Please Feel Free to Contact Us</h1>
+                </div>
+                <div class="row gx-3">
+                    <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+                        <h5 class="mb-4"><i class="fa fa-reply text-primary me-3"></i>Reply within 24 hours</h5>
+                    </div>
+                    <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+                        <h5 class="mb-4"><i class="fa fa-phone-alt text-primary me-3"></i>24 hrs telephone support</h5>
+                    </div>
+                </div>
+                <p class="mb-4">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>
+                <div class="d-flex align-items-center mt-2 wow zoomIn" data-wow-delay="0.6s">
+                    <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <i class="fa fa-phone-alt text-white"></i>
+                    </div>
+                    <div class="ps-4">
+                        <h5 class="mb-2">Call to ask any question</h5>
+                        <h4 class="text-primary mb-0">+012 345 6789</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="bg-primary rounded h-100 d-flex align-items-center p-5 wow zoomIn" data-wow-delay="0.9s">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-xl-12">
+                                <input type="text" class="form-control bg-light border-0" placeholder="Your Name" style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <input type="email" class="form-control bg-light border-0" placeholder="Your Email" style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <select class="form-select bg-light border-0" style="height: 55px;">
+                                    <option selected>Select A Service</option>
+                                    <option value="1">Service 1</option>
+                                    <option value="2">Service 2</option>
+                                    <option value="3">Service 3</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control bg-light border-0" rows="3" placeholder="Message"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-dark w-100 py-3" type="submit">Request A Quote</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Quote End -->
+
+
+
+
+
+
+
+
+
+<!-- Footer Start -->
+<div class="container-fluid   mt-5 wow fadeInUp" data-wow-delay="0.1s" style=" color: #565252;">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-lg-4 col-md-6 footer-about">
+                <h3  style=" color:#091E3E;">Get in Touch</h3>
+                <p style=" color: #565252;">We would be delighted to hear from you. Whether you have a question, concern, or just want to share your feedback, we are here to help.</p>
+                <div class="d-flex mb-2">
+                    <i class="bi bi-telephone text-primary me-2"></i>
+                    <p class="mb-0" style=" color: rgb(137, 173, 204);">+216 71 520 410</p>
+                </div>
+                <div class="d-flex mb-2">
+                    <i class="bi bi-envelope-open text-primary me-2"></i>
+                    <p class="mb-0" style=" color: rgb(137, 173, 204);">info@ironbyte.tn</p>
+                </div>
+                <div class="d-flex mb-2">
+                    <i class="bi bi-geo-alt text-primary me-2"></i>
+                    <p class="mb-0" style=" color: rgb(137, 173, 204);">Tunisie</p>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6">
+                <h3  style=" color: #091E3E;">Leave us your contact details and we will get back to you</h3>
+                <form>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <input type="text" class="form-control bg-light border-0" placeholder="Your name *" required>
+                        </div>
+                        <div class="col-12">
+                            <input type="email" class="form-control bg-light border-0" placeholder="Email *" required>
+                        </div>
+                        <div class="col-12">
+                            <input type="tel" class="form-control bg-light border-0" placeholder="Telephone number *" required>
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control bg-light border-0" rows="3" placeholder="Message"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-danger w-100 py-3" type="submit" style="background-color: #091E3E;border-color: #091E3E;">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<style>
+    .bg-dark {
+        background-color: #1a1a1a; /* Couleur sombre pour le footer */
+    }
+    .footer-about {
+        padding: 30px;
+    }
+    .footer-about h3 {
+        font-weight: bold;
+    }
+    .footer-about p {
+        color: #ccc;
+    }
+    .form-control {
+        background-color: #f8f9fa; /* Couleur de fond des champs de formulaire */
+        border: none; /* Suppression de la bordure */
+    }
+    .form-control:focus {
+        box-shadow: none; /* Suppression de l'ombre lors du focus */
+        border-color: transparent; /* Enlève la bordure lors du focus */
+    }
+    .btn-danger {
+        background-color: #e63946; /* Couleur du bouton */
+        border: none;
+    }
+</style>
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
