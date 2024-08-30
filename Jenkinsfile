@@ -71,17 +71,19 @@ stage('SonarQube Analysis for Angular') {
             withSonarQubeEnv('SonarQube-Angular') { 
                 dir('IronByte') {
                     bat """
-                        ng test --watch=false --code-coverage
-                        sonar-scanner.bat ^
-                            -Dsonar.projectKey=IRONBYTE_ANGULAR_PROJECT ^
-                            -Dsonar.sources=src ^
-                            -Dsonar.tests=src ^
-                            -Dsonar.test.inclusions=src/**/*.spec.ts ^
-                            -Dsonar.javascript.lcov.reportPaths=C:\\Esprit\\SpringProject\\intern\\IronByte\\coverage\\lcov.info ^
-                            -Dsonar.host.url=${env.SONARQUBE_URL} ^
-                            -Dsonar.token=${env.SONARQUBE_TOKEN_ANGULAR} ^
-                            -Dsonar.typescript.tsconfigPaths=tsconfig.json
+                    ng test --watch=false --code-coverage
+                    sonar-scanner.bat ^
+                    -Dsonar.projectKey=IRONBYTE_ANGULAR_PROJECT ^
+                    -Dsonar.sources=src ^
+                    -Dsonar.tests=src ^
+                    -Dsonar.test.inclusions=src/**/*.spec.ts ^
+                    -Dsonar.javascript.lcov.reportPaths=C:\\Esprit\\SpringProject\\intern\\IronByte\\coverage\\lcov.info ^
+                    -Dsonar.host.url=${env.SONARQUBE_URL} ^
+                    -Dsonar.token=${env.SONARQUBE_TOKEN_ANGULAR} ^
+                    -Dsonar.typescript.tsconfigPaths=tsconfig.json ^
+                    -X
                     """
+
                 }
             }
         }
