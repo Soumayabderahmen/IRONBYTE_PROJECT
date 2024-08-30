@@ -65,17 +65,28 @@ pipeline {
         }
     }
 }
-        stage('SonarQube Analysis for Angular') {
-            steps {
-                script {
-                    withSonarQubeEnv('SonarQube-Angular') { 
-                        dir('IronByte') {
-                            bat "sonar-scanner.bat -D\"sonar.projectKey=IRONBYTE_ANGULAR_PROJECT\" -D\"sonar.sources=src\" -D\"sonar.host.url=${env.SONARQUBE_URL}\" -D\"sonar.token=${env.SONARQUBE_TOKEN_ANGULAR}\""
-                        }
-                    }
+       stage('SonarQube Analysis for Angular') {
+    steps {
+        script {
+            withSonarQubeEnv('SonarQube-Angular') { 
+                dir('IronByte') {
+                    bat """
+                        npm run test -- --watch=false --code-coverage
+                        sonar-scanner.bat \
+                            -Dsonar.projectKey=IRONBYTE_ANGULAR_PROJECT \
+                            -Dsonar.sources=src \
+                            -Dsonar.tests=src \
+                            -Dsonar.test.inclusions=src/**/*.spec.ts \
+                            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
+                            -Dsonar.host.url=${env.SONARQUBE_URL} \
+                            -Dsonar.token=${env.SONARQUBE_TOKEN_ANGULAR}
+                    """
                 }
             }
         }
+    }
+}
+
         stage('Build Docker Images') {
             steps {
                 script {

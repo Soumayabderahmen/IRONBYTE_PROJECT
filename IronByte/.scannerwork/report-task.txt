@@ -1,0 +1,6 @@
+projectKey=IRONBYTE_ANGULAR_PROJECT
+serverUrl=http://localhost:9000
+serverVersion=10.6.0.92116
+dashboardUrl=http://localhost:9000/dashboard?id=IRONBYTE_ANGULAR_PROJECT
+ceTaskId=818c0a46-cc91-4111-b725-785b67981a67
+ceTaskUrl=http://localhost:9000/api/ce/task?id=818c0a46-cc91-4111-b725-785b67981a67
