@@ -65,7 +65,7 @@ pipeline {
         }
     }
 }
- stage('SonarQube Analysis for Angular') {
+stage('SonarQube Analysis for Angular') {
     steps {
         script {
             withSonarQubeEnv('SonarQube-Angular') { 
@@ -77,15 +77,17 @@ pipeline {
                             -Dsonar.sources=src ^
                             -Dsonar.tests=src ^
                             -Dsonar.test.inclusions=src/**/*.spec.ts ^
-                            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info ^
+                            -Dsonar.javascript.lcov.reportPaths=C:\\Esprit\\SpringProject\\intern\\IronByte\\coverage\\lcov.info ^
                             -Dsonar.host.url=${env.SONARQUBE_URL} ^
-                            -Dsonar.token=${env.SONARQUBE_TOKEN_ANGULAR}
+                            -Dsonar.token=${env.SONARQUBE_TOKEN_ANGULAR} ^
+                            -Dsonar.typescript.tsconfigPaths=tsconfig.json
                     """
                 }
             }
         }
     }
 }
+
 
 
         stage('Build Docker Images') {
