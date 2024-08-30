@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { UserService } from './services/user.service';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 
