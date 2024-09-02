@@ -114,6 +114,7 @@ pipeline {
                     bat 'kubectl apply -f ironbyteintern/mysql-configMap.yaml'
                     bat 'kubectl apply -f ironbyteintern/mysql-secrets.yaml'
                     bat 'kubectl apply -f ironbyteintern/db-deployment.yaml'
+                    bat 'kubectl apply -f ironbyteintern/mysql-pv-pvc.yaml'
                     bat 'kubectl apply -f ironbyte/frontend-deployment.yaml'
                 }
             }

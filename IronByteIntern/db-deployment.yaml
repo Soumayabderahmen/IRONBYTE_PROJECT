@@ -38,6 +38,18 @@ spec:
           ports:
             - containerPort: 3306
               name: mysql
+              
+          # Add volume mounts for persistent storage
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql # Path inside the container where MySQL stores data
+
+      # Specify persistent volume claim
+      volumes:
+        - name: mysql-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc # Use the name of your PVC
+
 ---
 # Define a 'Service' to expose MySQL to other services
 apiVersion: v1
