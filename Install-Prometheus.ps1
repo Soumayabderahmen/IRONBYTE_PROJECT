@@ -1,4 +1,5 @@
 # Ajouter le dépôt Helm
+helm repo update
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
 # Installer Prometheus dans le namespace monitoring
