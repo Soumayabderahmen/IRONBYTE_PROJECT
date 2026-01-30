@@ -1,65 +1,79 @@
 # 🛡️ IRONBYTE_PROJECT
 
-**IRONBYTE_PROJECT** est un projet technique axé sur le développement d’une **solution logicielle robuste et sécurisée**, mettant en œuvre des bonnes pratiques de programmation, d’organisation du code et d’automatisation.
+**IRONBYTE_PROJECT** est un projet full-stack basé sur **Spring Boot** et **Angular**, visant à développer une **application robuste, sécurisée et évolutive**, en appliquant les bonnes pratiques d’architecture logicielle et d’automatisation **CI/CD**.
 
-Le projet est structuré autour du dossier **IronByte/**, qui contient le cœur de l’application.
+Le cœur du projet est organisé dans le dossier **IronByte/**.
 
 ---
 
 ## 🎯 Objectifs du projet
-- Développer une application fiable et maintenable
-- Appliquer une architecture claire et modulaire
-- Automatiser les processus de tests et de déploiement
-- Mettre en œuvre une chaîne **CI/CD** pour améliorer la qualité logicielle
+- Développer une application web full-stack moderne
+- Mettre en place une architecture claire backend / frontend
+- Appliquer les bonnes pratiques de développement et de sécurité
+- Automatiser le cycle de vie applicatif via **CI/CD**
 
 ---
 
-## 🛠️ Langage & technologies utilisées
+## 🛠️ Stack technique
 
-### Langage principal
-- **Python** : utilisé pour le développement de la logique métier et des fonctionnalités principales du projet
+### Backend
+- **Spring Boot (Java)**  
+  - API REST
+  - Architecture en couches (Controller, Service, Repository)
+  - Sécurité et validation des données
+  - JPA / Hibernate (selon implémentation)
+
+### Frontend
+- **Angular**  
+  - Architecture modulaire
+  - Composants réutilisables
+  - Communication avec l’API REST
+  - Gestion d’état et services Angular
 
 ### Outils & bonnes pratiques
-- Git & GitHub (gestion de versions)
-- Architecture modulaire
-- Scripts automatisés
-- Gestion des dépendances
-- Tests automatisés (selon implémentation)
+- Maven / Gradle
+- Git & GitHub
+- Architecture REST
+- Séparation des responsabilités
+- Bonnes pratiques de sécurité applicative
 
 ---
 
 ## 🔄 CI/CD (Continuous Integration & Continuous Deployment)
 
-Le projet intègre une approche **CI/CD** afin d’automatiser les étapes clés du cycle de vie applicatif.
+Le projet adopte une approche **CI/CD** afin d’automatiser les étapes clés du développement.
 
 ### Pipeline CI/CD
 - Déclenchement automatique à chaque `push` ou `pull request`
-- Vérification du code
+- Build du backend **Spring Boot**
+- Build du frontend **Angular**
 - Exécution des tests automatisés
-- Détection des erreurs et régressions
+- Vérification de la qualité du code
 - Préparation au déploiement
 
-### Exemple d’outils CI/CD
+### Outils CI/CD
 - **GitHub Actions** (workflows CI/CD)
-- Jobs automatisés pour :
-  - Installation des dépendances
-  - Linting / vérification du code
-  - Exécution des tests
+- Jobs automatisés :
+  - `mvn clean install`
+  - `npm install && npm run build`
+  - Tests unitaires backend et frontend
 
 ---
 
 ## 📁 Structure du projet
-- `IronByte/` : code source principal (Python)
-- `config/` : fichiers de configuration
-- `scripts/` : scripts utilitaires
-- `tests/` : tests unitaires et fonctionnels
-- `.github/workflows/` : configuration CI/CD (GitHub Actions)
+- `IronByte/backend/` : application **Spring Boot**
+- `IronByte/frontend/` : application **Angular**
+- `IronByte/config/` : fichiers de configuration
+- `IronByte/tests/` : tests unitaires et fonctionnels
+- `.github/workflows/` : pipelines CI/CD (GitHub Actions)
 
 ---
 
 ## ⚙️ Prérequis
-- Python 3.x
-- pip / virtualenv
+- Java 17+
+- Maven ou Gradle
+- Node.js & npm
+- Angular CLI
 - Git
 
 ---
